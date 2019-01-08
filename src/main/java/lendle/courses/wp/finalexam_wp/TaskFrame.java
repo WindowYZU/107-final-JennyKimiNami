@@ -73,8 +73,7 @@ public class TaskFrame extends JInternalFrame {
             public void internalFrameClosing(InternalFrameEvent e) {
                 if (modified) {
                     //Q5: 發現變更，顯示 confirm dialog 詢問是否要儲存 (20%)
-                    int ret = -1;
-                    
+                    int ret = JOptionPane.showConfirmDialog(southPanel,"是否儲存?","Save",JOptionPane.YES_NO_OPTION);                    
                     /////////////////////////////////////////////
                     if (ret == JOptionPane.YES_OPTION) {
                         TaskDB.save(getNoteTitle(), getNoteContent());
