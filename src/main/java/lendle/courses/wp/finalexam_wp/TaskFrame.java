@@ -7,6 +7,7 @@ package lendle.courses.wp.finalexam_wp;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -29,14 +30,17 @@ import javax.swing.event.InternalFrameEvent;
  */
 public class TaskFrame extends JInternalFrame {
 
-    private JTextField textTitle = null;
-    private JTextArea textContent = null;
+    private JTextField textTitle = new JTextField();
+    private JTextArea textContent = new JTextArea();
     private boolean modified = false;
 
     public TaskFrame() {
         this.setSize(500, 300);
         //Q4: layout 出如圖所示的樣子，
         //記得 JTextArea 要放在捲軸裡面 (30%)
+        this.setLayout(new BorderLayout());
+        this.add(textTitle,"North");
+        this.add(textContent,"Center");
         ////////////////////////////
         this.setClosable(true);
         this.setResizable(true);
@@ -70,6 +74,7 @@ public class TaskFrame extends JInternalFrame {
                 if (modified) {
                     //Q5: 發現變更，顯示 confirm dialog 詢問是否要儲存 (20%)
                     int ret = -1;
+                    
                     /////////////////////////////////////////////
                     if (ret == JOptionPane.YES_OPTION) {
                         TaskDB.save(getNoteTitle(), getNoteContent());
